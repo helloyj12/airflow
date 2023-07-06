@@ -12,10 +12,10 @@ with DAG(
 ) as dag:
     # macro
     @task(task_id='task_using_macro',
-          templates_dict={'start_date':
-                          '{{(data_interval_end.in_timezone("Asia/Seoul") + macro.dateutil.relativedelta.relativedelta(months=-1, day=1)) | ds}}',
-                          'end_date':
-                          '{{(data_interval_den.in_timezone("Asia/Seoul").replace(day=1) + macro.dateutil.relativedelta.relativedelta(days=-1)) | ds}}'})
+            templates_dict={'start_date':
+                            '{{(data_interval_end.in_timezone("Asia/Seoul") + macro.dateutil.relativedelta.relativedelta(months=-1, day=1)) | ds}}',
+                            'end_date':
+                            '{{(data_interval_den.in_timezone("Asia/Seoul").replace(day=1) + macro.dateutil.relativedelta.relativedelta(days=-1)) | ds}}'})
     def get_datetime_macro(**kwargs):
         templates_dict = kwargs.get('templates_dict') or {}
         if templates_dict:
@@ -36,8 +36,3 @@ with DAG(
         print(prev_month_day_last.strftime('%Y-%m-%d'))
 
     get_datetime_macro() >> get_datetime_calc()
-
-
-
-
-    
